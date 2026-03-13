@@ -26,7 +26,7 @@ private:
   std::unique_ptr<node> head;
   std::mutex tail_mutex;
   node *tail;
-  std::atomic<int> csize; // current size as an atomic variables so that its safe even when both producer and consumer threads change it at same time.
+  std::atomic<size_t> csize; // current size as an atomic variables so that its safe even when both producer and consumer threads change it at same time.
   std::condition_variable cond;
 
   // Description of private members :
@@ -109,7 +109,7 @@ public:
   void emplace_back(Args&&... args);
 
   // 9. Add size() function
-  int size();
+  size_t size();
 
   // 10. Any more suggestions ??
 };
